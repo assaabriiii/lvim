@@ -83,12 +83,28 @@ lvim.builtin.which_key.mine = true -- pin to v2.0.1
 -- Custom User Config
 -- =========================================
 local user = vim.env.USER
-if user and user == "abz" then
+if user and user == "amir" then -- change your username please 
   lvim.reload_config_on_save = true
   require("user.custom_user").config()
 end
-
 -- Additional Actions Based on Custom User Config
+
+lvim.plugins = {
+    {
+        "iamcco/markdown-preview.nvim",
+        run = function() vim.fn["mkdp#util#install"]() end,
+        setup = function() vim.g.mkdp_filetypes = { "markdown" } end,
+        ft = { "markdown" },
+    },
+}
+
+lvim.plugins = {
+  {
+   "tzachar/cmp-tabnine",
+   event = "BufRead",
+   build = "./install.sh",
+   },
+}
 -- =========================================
 if lvim.builtin.winbar_provider == "navic" then
   vim.opt.showtabline = 1
